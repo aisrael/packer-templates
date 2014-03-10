@@ -15,9 +15,9 @@
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
-      "iso_checksum": "b3d4d4edfc8f291af0b83f8a2ba19a2f",
+      "iso_checksum": "e83adb9af4ec0a039e6a5c6e145a34de",
       "iso_checksum_type": "md5",
-      "iso_url": "http://releases.ubuntu.com/12.10/ubuntu-12.10-server-i386.iso",
+      "iso_url": "http://releases.ubuntu.com/12.04/ubuntu-12.04.4-server-amd64.iso",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -43,7 +43,7 @@
   ],
   "post-processors": [
     {
-      "output": "ubuntu-12.10-server-i386-vbox-4.3.6.box",
+      "output": "ubuntu-12.04-server-amd64-vbox-4.3.8.box",
       "type": "vagrant"
     }
   ],
