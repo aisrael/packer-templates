@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set up sudo
-echo %vagrant ALL=NOPASSWD:ALL > /etc/sudoers.d/vagrant
+echo "%vagrant ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/vagrant
 chmod 0440 /etc/sudoers.d/vagrant
 
 # Setup sudo to allow no-password sudo for "sudo"
@@ -14,6 +14,11 @@ cd /home/vagrant/.ssh
 wget --no-check-certificate 'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub' -O authorized_keys
 chmod 600 /home/vagrant/.ssh/authorized_keys
 chown -R vagrant /home/vagrant/.ssh
+
+echo deb http://archive.ubuntu.com/ubuntu precise main | tee /etc/apt/sources.list
+echo deb http://archive.ubuntu.com/ubuntu precise-updates main | tee -a /etc/apt/sources.list
+echo deb http://archive.ubuntu.com/ubuntu precise universe | tee -a /etc/apt/sources.list
+echo deb http://archive.ubuntu.com/ubuntu precise-updates universe | tee -a /etc/apt/sources.list
 
 # Install NFS for Vagrant
 apt-get update
