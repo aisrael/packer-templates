@@ -43,7 +43,7 @@
   ],
   "post-processors": [
     {
-      "output": "ubuntu-12.10-server-i386-vbox-4.3.6.box",
+      "output": "ubuntu-12.10-server-i386-vbox-4.3.10.box",
       "type": "vagrant"
     }
   ],

@@ -46,7 +46,7 @@
   ],
   "post-processors": [
     {
-      "output": "ubuntu-12.04-server-amd64-vbox-4.3.8.box",
+      "output": "ubuntu-12.04-server-amd64-vbox-4.3.10.box",
       "type": "vagrant"
     }
   ],
