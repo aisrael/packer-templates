@@ -1,0 +1,38 @@
+---
+- hosts: all
+  vars:
+    apt_cache_ng_url: http://10.0.2.2:3142
+    # Created with: openssl passwd -1 stack
+    password: $1$Hso0MmCD$kMSA0gAK2VWjzJljeZ8z40
+
+  tasks:
+  - name: Use local apt-cache-ng
+    lineinfile: "dest=/etc/apt/apt.conf create=yes insertafter=EOF line='Acquire::http { Proxy \"{{apt_cache_ng_url}}\"; };'"
+    when:
+    sudo: yes
+
+  - name: Install NTP
+    apt: pkg={{item}} update_cache=yes cache_valid_time=3600
+    with_items:
+      - ntp
+      - build-essential
+      - git
+      - vim
+    sudo: yes
+
+  - name: Create stack user
+    user: name=stack password={{password}}
+    sudo: yes
+
+  - name: Enable password-less sudo for stack user
+    lineinfile: "dest=/etc/sudoers insertafter=EOF line='stack ALL=(ALL) NOPASSWD: ALL'"
+    sudo: yes
+
+  - name: Clone Devstack repo
+    git: repo=https://github.com/openstack-dev/devstack.git dest=devstack version=stable/icehouse
+
+  - name: Copy Devstack configuration file
+    copy: src=devstack/localrc dest=/home/vagrant/devstack/localrc
+
+#  - name: stack.sh
+#    shell: chdir=/home/vagrant/devstack echo |./stack.sh
